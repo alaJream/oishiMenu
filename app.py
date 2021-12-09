@@ -34,7 +34,7 @@ def login():
         return redirect(url_for("user"))
     else:
         if "user" in session:
-            flash("Already logged in!!")
+            flash("You are already logged in!")
             return redirect(url_for("user"))
 
         return render_template('login.html')
@@ -45,12 +45,12 @@ def user():
         user = session["user"]
         return render_template("user.html", user=user)
     else:
-        flash("You are not logged in!")
+        flash("You must log in to place an order!")
         return redirect(url_for("login"))
 
 @app.route("/logout")
 def logout():
-    flash("You have been logged out", "info")
+    flash("Thanks for visiting! You have been logged out!", "info")
     session.pop("user", None)
     return redirect(url_for("login"))
 
